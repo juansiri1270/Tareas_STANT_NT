@@ -1,0 +1,101 @@
+---
+title: "Actividad 6"
+author: "Juan Siri"
+date: "13 de abril de 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Ejercicio 1
+
+Con los datos `mpg` que se encuentran disponible en `ggplot2` hacer un gráfico con las siguientes características:
+
+- Un diagrama de dispersión de  `hwy` vs `cty
+
+```{r, echo=TRUE}
+library("ggplot2")
+
+plot(mpg$hwy, mpg$cty)
+
+```
+
+- Incluir usando `labs` el nombre de los ejes, título informativo y nombre de la leyenda
+
+
+```{r, echo=TRUE}
+library ("ggplot2")
+
+plot(mpg$hwy, mpg$cty, main = "Rendimiento del auto",xlab = "Millas de ruta por galón", ylab = "Millas de ciudad por galón", sub = "Rendimiento ciudad vs Ruta")
+
+```
+
+Usar `?mpg` para ver la descripción de las variables.
+
+
+# Ejercicio 2
+
+ En el gráfico anterior hay un problema de sobre ploteo, esto es hay más de una observación en algunas combinaciones de  `cty` y `hwy`. 
+ 
+1. Hacer el  gráfico anterior y usá transparencia (`alpha`) para ver el problema de sobre ploteo.
+
+```{r, echo=TRUE}
+
+ggplot(mpg, aes(x = hwy, y = cty) )+
+ geom_point(alpha = 1 / 3)
+
+```
+ 
+ 
+2. Hacer el  gráfico anterior y usá  `geom_jitter()`  para ver el problema de sobre ploteo.
+ 
+
+```{r, echo=TRUE}
+
+ggplot(mpg, aes(x = hwy, y = cty) )+
+ geom_point(alpha = 1 / 3)+
+  labs(x = "Millas de ruta por galon", y = "Millas de ciudad por galon")+
+   geom_jitter()
+
+```
+
+3. ¿Qué opción te resulta más apropiada y porqué ?
+
+##### La opción 1 me resulta mas apropiada ya qeu es una imagen más clara, en la segunda se sobrelotea aun más.
+ 
+#  Ejercicio 3
+
+Usá como base el gráfico del ejercicio 2 con `geom_jitter.
+
+1. Coloreá usando la variable `class`
+
+
+```{r, echo=TRUE}
+ggplot(mpg, aes(x = hwy, y = cty, colour = class))+
+ geom_point(alpha = 1 / 3)+
+  labs(x = "Millas de ruta por galon", y = "Millas de ciudad por galon")
+
+```
+
+2. Usá el gráfico anterior pero cambiando la paleta de colores a `Dark2`
+  Chequear la ayuda de `?scale_colour_brewer`. Para mirar otras posibles paletas visitar: http://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3
+
+```{r, echo=TRUE}
+ggplot(mpg, aes(x = hwy, y = cty, colour = class))+
+ geom_point(alpha = 1 / 3)+
+  labs(x = "Millas de ruta por galon", y = "Millas de ciudad por galon")+
+   scale_colour_brewer(palette = "Dark2")
+```
+
+3. Usá la variable `class` para crear un gráfico para cada subconjunto, mirá `?facet_wrap`.
+
+```{r, echo=TRUE}
+ggplot(mpg, aes(x = hwy, y = cty, colour = class))+
+ geom_point(alpha = 1 / 3)+
+  labs(x = "Millas de ruta por galon", y = "Millas de ciudad por galon")+
+ scale_colour_brewer(palette = "Dark2")+
+ facet_wrap(vars(class))
+```
+facet_wrap(vars(class))
