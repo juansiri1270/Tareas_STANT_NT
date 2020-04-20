@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Con los datos `mpg` que se encuentran disponible en `ggplot2` hacer un gráfico con las siguientes características:
 
-- Un diagrama de dispersión de  `hwy` vs `cty
+- Un diagrama de dispersión de  `hwy` vs cty
 
 ```{r, echo=TRUE}
 library("ggplot2")
@@ -64,6 +64,11 @@ ggplot(mpg, aes(x = hwy, y = cty) )+
 3. ¿Qué opción te resulta más apropiada y porqué ?
 
 ##### La opción 1 me resulta mas apropiada ya qeu es una imagen más clara, en la segunda se sobrelotea aun más.
+
+\fbox{\begin{minipage}{48em}
+Bien el tema con geom jitter es que termina agregando una distorsión innecesaria que no soluciona el problema de sobreploteo.
+\end{minipage}}
+
  
 #  Ejercicio 3
 
@@ -98,4 +103,7 @@ ggplot(mpg, aes(x = hwy, y = cty, colour = class))+
  scale_colour_brewer(palette = "Dark2")+
  facet_wrap(vars(class))
 ```
-facet_wrap(vars(class))
+
+\fbox{\begin{minipage}{48em}
+Muy bien 8/10! Los primeros dos gráficos los hiciste con la fución plot, la idea del curso es usar siempre ggplot2 que es lo que damos. AL resto de los gráficos estaría bueno agregarles título para que la visualización quede autocontenida. Un título adecuado contiene el tipo de gráfico y las variables. En este caso se trata de gráficos de dispersión.
+\end{minipage}}
