@@ -1,0 +1,164 @@
+---
+title: "Actividad 7"
+author: "Juan Siri"
+date: "20 de abril de 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Ejercicio 1
+
+1. Hacer un gráfico de dispersión: componentes estéticos `x` total, `y` propina, `color` fuma
+
+```{r, echo = TRUE}
+library(tidyverse)
+
+propinas<- read.csv("propina.csv")
+
+ggplot(propinas, aes(total, propina, colour = fuma))+
+  geom_point()
+   
+```
+
+2. Cambiá el nombre de los ejes: `x` = "Total gastado en dólares", `y` = "Propina en dólares"
+
+
+```{r, echo = TRUE}
+library(tidyverse)
+
+propinas<- read.csv("propina.csv")
+
+ggplot(propinas, aes(total, propina, colour = fuma))+
+  geom_point()+
+   scale_x_continuous(name ="Total gastado en dólares") +
+    scale_y_continuous(name = "Propina en dólares")
+     
+
+```
+
+3. Cambiá el nombre de la leyenda de `color` a "Fumador"
+
+
+```{r, echo = TRUE}
+library(tidyverse)
+
+propinas<- read.csv("propina.csv")
+
+ggplot(propinas, aes(total, propina, colour = fuma))+
+  geom_point()+
+   scale_x_continuous(name ="Total gastado en dólares") +
+    scale_y_continuous(name = "Propina en dólares")+
+     scale_color_discrete(name = "Fumador")
+
+```
+
+4. Cambiá la posición de la leyenda en la parte inferior del gráfico usando `theme`
+
+```{r, echo = TRUE}
+library(tidyverse)
+
+propinas<- read.csv("propina.csv")
+
+ggplot(propinas, aes(total, propina, colour = fuma))+
+  geom_point()+
+   scale_x_continuous(name ="Total gastado en dólares") +
+    scale_y_continuous(name = "Propina en dólares")+
+     scale_color_discrete(name = "Fumador")+
+      theme(legend.position = "bottom")
+
+```
+
+5. Cambiar la paleta de colores a Dark2 usando `scale_color_brewer()`
+
+```{r, echo = TRUE}
+library(tidyverse)
+
+propinas<- read.csv("propina.csv")
+
+ggplot(propinas, aes(total, propina, colour = fuma))+
+  geom_point()+
+   scale_x_continuous(name ="Total gastado en dólares") +
+    scale_y_continuous(name = "Propina en dólares")+
+     scale_color_discrete(name = "Fumador")+
+      theme(legend.position = "bottom")+
+        scale_color_brewer("Dark2")
+
+```
+
+
+
+# Ejercicio 2
+
+1. Incluir un suavizado lineal usando `geom_smooth()`.
+
+```{r, echo = TRUE}
+library(tidyverse)
+
+propinas<- read.csv("propina.csv")
+
+ggplot(propinas, aes(total, propina, colour = fuma))+
+  geom_point()+
+   scale_x_continuous(name ="Total gastado en dólares") +
+    scale_y_continuous(name = "Propina en dólares")+
+     scale_color_discrete(name = "Fumador")+
+      theme(legend.position = "bottom")+
+        scale_color_brewer("Dark2")+
+  geom_smooth()
+
+```
+
+2. Cambiar el color de la linea a negro.
+
+```{r, echo = TRUE}
+library(tidyverse)
+
+propinas<- read.csv("propina.csv")
+
+ggplot(propinas, aes(total, propina, colour = fuma))+
+  geom_point()+
+   scale_x_continuous(name ="Total gastado en dólares") +
+    scale_y_continuous(name = "Propina en dólares")+
+     scale_color_discrete(name = "Fumador")+
+      theme(legend.position = "bottom")+
+        scale_color_brewer("Dark2")+
+  geom_smooth(colour="black")
+
+```
+
+# Ejercicio 3
+
+1. Hacer un gráfico de barras para la variable dia usando `geom_bar()`
+
+
+```{r, echo = TRUE}
+library(tidyverse)
+
+propinas<- read.csv("propina.csv")
+
+ggplot(propinas, aes(x = dia))+
+  geom_bar()
+
+```
+
+2. Colorear por día de la semana las barras usar el elemento estético `fill`
+
+
+```{r, echo = TRUE}
+library(tidyverse)
+
+propinas<- read.csv("propina.csv")
+
+ggplot(propinas, aes(x = dia, fill="party"))+
+  geom_bar()
+
+```
+
+3. Ordena los días según frecuencia (usá `fct_infreq()` de la librería `forcats`).
+
+
+
+4. Rotá el gráfico usando `coord_flip()`.
+
