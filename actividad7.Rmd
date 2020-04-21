@@ -62,7 +62,7 @@ library(tidyverse)
 
 propinas<- read.csv("propina.csv")
 
-ggplot(propinas, aes(total, propina, colour = fuma))+
+ggplot(propinas, aes(total, propina, fill = fuma))+
   geom_point()+
    scale_x_continuous(name ="Total gastado en dólares") +
     scale_y_continuous(name = "Propina en dólares")+
@@ -78,15 +78,32 @@ library(tidyverse)
 
 propinas<- read.csv("propina.csv")
 
-ggplot(propinas, aes(total, propina, colour = fuma))+
+ggplot(propinas, aes(total, propina, color = fuma))+
   geom_point()+
    scale_x_continuous(name ="Total gastado en dólares") +
     scale_y_continuous(name = "Propina en dólares")+
-     scale_color_discrete(name = "Fumador")+
+      scale_color_discrete(name = "Fumador")+
       theme(legend.position = "bottom")+
         scale_color_brewer("Dark2")
-
 ```
+
+
+<div class="alert alert-info">
+  <strong>No te estaba tomando la paleta dark2 por un tema con los scales, te pongo un ejemplo de codigo donde si la toma.</strong> .
+</div>
+
+
+```{r}
+propinas %>% ggplot(aes(x=total,y=propina,color=fuma)) + geom_point() +
+      labs(x="Total gastado en dólares",y="Propina en dólares" ,color="Fumador") +
+      scale_color_brewer(palette = 'Dark2')
+```
+
+
+
+
+
+
 
 
 
@@ -161,4 +178,10 @@ ggplot(propinas, aes(x = dia, fill="party"))+
 
 
 4. Rotá el gráfico usando `coord_flip()`.
+
+
+<div class="alert alert-info">
+  <strong>Muy buen trabajo! 8/10. Te había faltado agregar los datos al repositorio y tenías también un tema con la paleta que te lo comenté más arriba.</strong> .
+</div>
+
 
