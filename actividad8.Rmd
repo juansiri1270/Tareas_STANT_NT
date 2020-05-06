@@ -1,0 +1,143 @@
+---
+title: "Actividad 8"
+author: "Juan Siri"
+date: "4 de mayo de 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Esta actividad tiene que quedar disponible en su repositorio de GitHub con el resto de las actividades y tareas del curso. Asegurate que tanto Lucía como yo seamos colaboradoras de tu proyecto Tareas_STAT_NT creado hace dos semanas.
+Recordar seleccionar en en opciones de proyecto, codificación de código UTF-8.
+Recordar que para que tengas la última version de tu repositorio en GitHub debes hacer pull a tu repositorio para tener la copia localmente en tu computadora y no generar inconsistencias y antes de terminar subir tus cambios con `commit` y `push`.
+
+
+
+
+# Ejercicio 1
+Cargar la librería `tidyverse` y con los datos `mpg` usar las funciones que vimos de `dplyr` para  transformar los datos de la siguiente forma. 
+
+```{r, echo=TRUE}
+library(tidyverse)
+
+```
+1. Seleccionar el conjunto de autos del 2008 que tienen `hwy` mayor a 31.
+¿Cuantos autos son?
+
+```{r, echo=TRUE}
+
+(filter(mpg, hwy>31)) %>% 
+  summarise(cantidad = n())
+
+
+
+
+
+```
+##### Son 15 los autos.
+
+
+
+
+2. Seleccionar el conjunto de autos que tienen `cty` igual a 9 ó hwy es mayor a 90. ¿Cuantos autos son?
+
+```{r, echo=TRUE}
+
+filter(mpg, (cty == 9) | (hwy>90)) %>%
+  summarise(cantidad2 = n())
+
+
+
+```
+##### Son 5 los autos.
+
+3. Seleccioná la variable `displ` y `hwy`.
+
+
+
+```{r, echo=TRUE}
+select(mpg, displ, hwy)
+       
+```
+
+
+
+
+4. Seleccioná desde la variable `trans` hasta la variable `hwy`.
+
+```{r, echo=TRUE}
+select(mpg, trans:hwy)
+       
+```
+
+5. Produce un dataframe: marca, modelo, año, cantidad de cilindros y rendimiento en ciudad. Únicamente para los autos, toyota, camry.
+
+
+```{r, echo=TRUE}
+mpg %>%
+  select(manufacturer, model, year, cyl, cty) %>%
+  filter(manufacturer %in% c("toyota") & model == "camry")
+         
+```
+
+
+6. Calcula el rendimiento promedio en ciudad para cada marca (`manufacturer`). ¿Cuál es el mejor rendimiento en ciudad? y el peor ?  
+
+
+```{r, echo=TRUE}
+promedios <- group_by(mpg, manufacturer)
+summarise(promedios, media = mean(cty))
+```
+##### Lincoln tiene el peor rendimiento en ciudad con 11.3 millas por galón y Honda el mejor con 24.4 millas por galón
+
+7. Para cada marca: calcula el rendimiento promedio en ciudad, el error estandard de la media, y el rango
+
+
+```{r, echo=TRUE}
+promedios <- group_by(mpg, manufacturer)
+summarise(promedios, media = mean(cty))
+```
+
+8. Mejora en el rendimiento: calcular el rendimiento promedio para cada marca, distinguiendo antes y después de 2004
+
+
+```{r, echo=TRUE}
+
+mpg2 <- filter(mpg, year >= 2004)
+promedios2 <-  group_by(mpg2, manufacturer)
+summarise(promedios2, media2 = mean(cty))
+
+mpg3 <- filter(mpg, year < 2004)
+promedios3 <-  group_by(mpg3, manufacturer)
+summarise(promedios3, media3 = mean(cty))
+
+
+
+```
+
+
+9. Calcular el rendimiento promedio en carretera (`hwy`), para 3 marcas seleccionadas aleatoriamente y ordena el resultado de menor a mayor
+
+
+```{r, echo=TRUE}
+
+grupo <- (group_by(mpg, manufacturer)) 
+grupo2 <- sample(grupo, size = 3) 
+summarise(grupo2, rendimiento = mean(hwy))
+  
+
+```
+
+10. Crear una nueva variable que transforme  `hwy` (millas por galón) en litros/100 km.
+Primero tenés que saber la conversión de galones a litros y de millas a kilómetros.
+
+`1 gallón = 3.78541 litros`
+
+`1 milla = 1.60934 km`
+
+
+
+
+
