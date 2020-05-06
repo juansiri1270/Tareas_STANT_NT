@@ -121,14 +121,6 @@ summarise(promedios3, media3 = mean(cty))
 9. Calcular el rendimiento promedio en carretera (`hwy`), para 3 marcas seleccionadas aleatoriamente y ordena el resultado de menor a mayor
 
 
-```{r, echo=TRUE}
-
-grupo <- (group_by(mpg, manufacturer)) 
-grupo2 <- sample(grupo, size = 3) 
-summarise(grupo2, rendimiento = mean(hwy))
-  
-
-```
 
 10. Crear una nueva variable que transforme  `hwy` (millas por galón) en litros/100 km.
 Primero tenés que saber la conversión de galones a litros y de millas a kilómetros.
@@ -137,7 +129,13 @@ Primero tenés que saber la conversión de galones a litros y de millas a kilóm
 
 `1 milla = 1.60934 km`
 
+```{r, echo=TRUE}
 
+mutate(mpg, lpk = 235.21/hwy)
+head(mpg)
+  
+
+```
 
 
 
