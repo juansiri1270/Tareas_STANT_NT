@@ -1,0 +1,68 @@
+---
+title: "actividad9"
+author: "Juan Siri"
+date: "7 de mayo de 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Esta actividad tiene que quedar disponible en su repositorio de GitHub con el resto de las actividades y tareas del curso. Asegurate que tanto Lucía como yo seamos colaboradoras de tu proyecto Tareas_STAT_NT creado hace dos semanas.
+Recordar seleccionar en en opciones de proyecto, codificación de código UTF-8.
+Recordar que para que tengas la última version de tu repositorio debes hacer pull a tu repositorio para no generar inconsistencias y antes de terminar subir tus cambios con `commit` y `push`.
+
+
+# Ejercicio 1
+
+Cargá la librería `tidyverse` y usando los datos `mpg` respondé las siguientes preguntas. 
+Para tu respuesta debes usar alguna de las variantes de los verbos básicos de `dplyr` (`filter()`, `arrange()`, `select()`, `mutate()`, `summarise()`, `transmute()`, `filter()`, `group_by()`) agregando al final `_all`, `_at` o `_if`.  En tus respuestas utilizá `%>%` cuando sea posible.
+
+```{r, echo=TRUE}
+library(tidyverse)  
+
+```
+
+1. Seleccioná las columnas de `mpg` que cumplen la condición de ser de typo `character`. 
+
+
+```{r, echo=TRUE}
+
+mpg %>% select_if(~is.character(.))
+
+```
+
+
+2. Seleccioná las columnas de `mpg` que cumplen la condición de ser de typo `numeric` y que cumplen que la media es mayor a 20.
+
+```{r, echo=TRUE}
+
+mpg %>% select_if(~is.numeric(.) & mean(.)>20)
+                  
+                  
+
+```
+
+3. Selecciná  las filas que cumplen que el valor de alguna de las variable es
+menor a 2.
+
+```{r, echo = TRUE}
+
+``` 
+
+4. Seleccioná las filas que cumplen que tanto `cty` como `hwy` son mayores a 25.
+
+```{r, echo=TRUE}
+mpg %>% filter_at(vars(cty, hwy),~(.) > 25)
+                  
+```
+
+5. Calculá la media para cada columna numérica en `mpg`.  
+
+```{r, echo=TRUE}
+
+mpg %>% summarise_if(is.numeric,
+                     ~mean(., na.rm = TRUE))
+
+```
