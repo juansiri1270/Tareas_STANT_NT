@@ -39,6 +39,9 @@ library(tidyverse)
 ##### Son 15 los autos.
 
 
+<div class="alert alert-info">
+  <strong>Esta bien, solo te faltó filtrar también que sean del 2008.</strong> .
+</div>
 
 
 2. Seleccionar el conjunto de autos que tienen `cty` igual a 9 ó hwy es mayor a 90. ¿Cuantos autos son?
@@ -92,6 +95,11 @@ summarise(promedios, media = mean(cty))
 ```
 ##### Lincoln tiene el peor rendimiento en ciudad con 11.3 millas por galón y Honda el mejor con 24.4 millas por galón
 
+<div class="alert alert-info">
+  <strong>Bien! para seguir en la línea de código podés agregar al final un filter para filtrar máximo y mínimo de la variable promedios.</strong> .
+</div>
+
+
 7. Para cada marca: calcula el rendimiento promedio en ciudad, el error estandard de la media, y el rango
 
 
@@ -99,6 +107,11 @@ summarise(promedios, media = mean(cty))
 promedios <- group_by(mpg, manufacturer)
 summarise(promedios, media = mean(cty))
 ```
+
+<div class="alert alert-info">
+  <strong>Acá en realidad había que calcular media, desvio estandar, y rango, de la variable cty, agrupando por marca.</strong> .
+</div>
+
 
 8. Mejora en el rendimiento: calcular el rendimiento promedio para cada marca, distinguiendo antes y después de 2004
 
@@ -117,10 +130,16 @@ summarise(promedios3, media3 = mean(cty))
 
 ```
 
+<div class="alert alert-info">
+  <strong>Bien, una forma más corta es en vez de filtrar, agrupar por year menor (o mayor) a 2004. Eso hace una evaluación lógica y te crea grupos de verdaderos y falsos. En la solución colgada hay un ejemplo de esto. </strong> .
+</div>
 
 9. Calcular el rendimiento promedio en carretera (`hwy`), para 3 marcas seleccionadas aleatoriamente y ordena el resultado de menor a mayor
 
 
+<div class="alert alert-info">
+  <strong>Esto lo podés hace filtrando sobre una muestra de los niveles de manufacturer, usando la función sample para tomar la muestra. Fijate la sol y cualquier cosa me decis.</strong> .
+</div>
 
 10. Crear una nueva variable que transforme  `hwy` (millas por galón) en litros/100 km.
 Primero tenés que saber la conversión de galones a litros y de millas a kilómetros.
@@ -137,5 +156,6 @@ head(mpg)
 
 ```
 
-
-
+<div class="alert alert-info">
+  <strong>Muy buen trabajo! 8.75/10. Sin comentarios adicionales.</strong> .
+</div>

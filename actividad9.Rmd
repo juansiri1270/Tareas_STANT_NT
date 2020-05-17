@@ -51,12 +51,21 @@ menor a 2.
 
 ``` 
 
+<div class="alert alert-info">
+  <strong>Esto lo podés resolver usando un filter all ya que queremos filtrar filas sobre todas las variables. Para agregar la condicion que deben cumplir usas la función any vars.</strong> .
+</div>
+
+
 4. Seleccioná las filas que cumplen que tanto `cty` como `hwy` son mayores a 25.
 
 ```{r, echo=TRUE}
 mpg %>% filter_at(vars(cty, hwy),~(.) > 25)
                   
 ```
+
+<div class="alert alert-info">
+  <strong>Bien es un filter at como hiciste porque se trata de una selección explícita sibre cty y hwy.</strong> .
+</div>
 
 5. Calculá la media para cada columna numérica en `mpg`.  
 
@@ -66,3 +75,7 @@ mpg %>% summarise_if(is.numeric,
                      ~mean(., na.rm = TRUE))
 
 ```
+
+<div class="alert alert-info">
+  <strong>Muy bien 8/10! sin comentarios adicionales.</strong> .
+</div>
